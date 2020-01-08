@@ -1,0 +1,40 @@
+server:
+  port: 8086
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/dummy-admin?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+    password: '123456'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+#jwt
+jwt:
+  header: Authorization
+  secret: mySecret
+  # token 过期时间 单位毫秒
+  expiration: 7200000
+  # token 距离过期时间的剩余时间，自动刷新token 单位毫秒，通常设置为过期时间的一半
+  refreshTime: 3600000
+  # token持有者,
+  prefix: 'Bearer:'
+  auth:
+    # 授权路径
+    path: /login
+
+
+mybatis-plus:
+  #为什么没用啊？
+  mapper-locations: classpath:/mapper/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.meizi.admin.entity
+  global-config:
+    db-config:
+      # 主键ID类型
+      id-type: id_worker
+      # 数据库类型
+      db-type: mysql
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false

@@ -74,6 +74,8 @@ subprojects {
         compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.64'
         // https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
         compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.2.1.RELEASE'
+        // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.2.2.RELEASE'
 
     }
 }

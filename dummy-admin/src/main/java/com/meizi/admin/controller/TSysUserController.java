@@ -1,13 +1,9 @@
 package com.meizi.admin.controller;
 
-import cn.hutool.crypto.SecureUtil;
-import com.meizi.admin.auth.DefaultJwtUserDetails;
 import com.meizi.admin.constants.AdminConstants;
-import com.meizi.admin.entity.TSysRole;
 import com.meizi.admin.entity.TSysUser;
 import com.meizi.admin.model.Result;
 import com.meizi.admin.service.ITSysUserService;
-import com.meizi.admin.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +44,7 @@ public class TSysUserController {
 
     @PostMapping(value = "/create")
     public Result create(@RequestBody TSysUser domain) {
-        domain.setPassword(passwordEncoder.encode(MD5Util.encrypt(AdminConstants.DEF_ADMIN_PASSWORD)));
+        domain.setPassword(passwordEncoder.encode(AdminConstants.DEF_ADMIN_PASSWORD));
         if (tSysUserService.createUser(domain)) {
             return Result.succeed("创建成功");
         } else {

@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 用户角色表 前端控制器
+ * 角色权限表 前端控制器
  * </p>
  *
  * @author meizi
- * @since 2020-01-07
+ * @since 2020-01-16
  */
 @RestController
-@RequestMapping("/user-role")
-public class TSysUserRoleController {
+@RequestMapping("/sys-role-permission")
+public class TSysRolePermissionController {
 
 }

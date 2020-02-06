@@ -63,7 +63,7 @@ public class AdminAuthenticationController {
         return Result.succeed(new AuthenticationInfo(token, jwtUser));
     }
 
-    @PostMapping(value = "/hi")
+    @RequestMapping(value = "/hi")
     public Result sayHi() {
         return Result.succeed("Hi");
     }

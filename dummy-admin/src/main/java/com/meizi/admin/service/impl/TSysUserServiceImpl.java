@@ -59,6 +59,19 @@ public class TSysUserServiceImpl extends ServiceImpl<TSysUserMapper, TSysUser> i
     }
 
     @Override
+    public TSysUser findByUserEmail(String email) {
+        QueryWrapper<TSysUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_email", email);
+        TSysUser tSysUser = baseMapper.selectOne(wrapper);
+        if (Objects.nonNull(tSysUser) && Objects.nonNull(tSysUser.getId())) {
+            List<TSysRole> tSysRoleList = tSysRoleService.findRolesByUserId(tSysUser.getId());
+            tSysUser.setRoles(tSysRoleList);
+            tSysUser.setIsOwner(tSysRoleService.isGetOwner(tSysRoleList));
+        }
+        return tSysUser;
+    }
+
+    @Override
     public boolean deleteUser(TSysUser domain) {
         return retBool(baseMapper.deleteById(domain.getId()));
     }
@@ -66,5 +79,14 @@ public class TSysUserServiceImpl extends ServiceImpl<TSysUserMapper, TSysUser> i
     @Override
     public boolean updateByUser(TSysUser user) {
         return  retBool(baseMapper.updateById(user));
+    }
+
+    @Override
+    public TSysUser findById(long id) {
+        TSysUser tSysUser = baseMapper.selectById(id);
+        if (Objects.nonNull(tSysUser) && Objects.nonNull(tSysUser.getId())) {
+            tSysUser.setRoles(tSysRoleService.findRolesByUserId(tSysUser.getId()));
+        }
+        return tSysUser;
     }
 }

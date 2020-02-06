@@ -17,7 +17,6 @@ import java.util.List;
 public interface ITSysRoleService extends IService<TSysRole> {
     /**
      * 根据用户ID查询角色集合
-     *
      * @param userId
      * @return
      */

@@ -5,6 +5,7 @@ import com.meizi.admin.entity.TSysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.meizi.admin.model.Result;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 
 /**
  * <p>
@@ -26,6 +27,10 @@ public interface ITSysUserService extends IService<TSysUser> {
 
     TSysUser findByUserName(String userName);
 
+
+
+    TSysUser findByUserEmail(String Email);
+
     /**
      * delete
      * @param domain
@@ -41,4 +46,14 @@ public interface ITSysUserService extends IService<TSysUser> {
      */
     @CacheEvict(allEntries = true)
     boolean updateByUser(TSysUser user);
+
+    /**
+     * get
+     *
+     * @param id
+     * @return
+     */
+    @Cacheable(key = "#p0")
+    TSysUser findById(long id);
+
 }

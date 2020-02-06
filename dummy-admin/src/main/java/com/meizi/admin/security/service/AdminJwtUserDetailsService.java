@@ -37,6 +37,17 @@ public class AdminJwtUserDetailsService implements UserDetailsService {
         return createJwtUser(user);
     }
 
+
+    // 邮箱地址
+    public DefaultJwtUserDetails loadUserByEmail(String email) {
+        TSysUser user = tSysUserService.findByUserEmail(email);
+        if (Objects.isNull(user)) {
+            throw new UsernameNotFoundException(email + " 用户不存在");
+        }
+
+        return createJwtUser(user);
+    }
+
     public DefaultJwtUserDetails createJwtUser(TSysUser user) {
         return new DefaultJwtUserDetails(
                 user.getId(),

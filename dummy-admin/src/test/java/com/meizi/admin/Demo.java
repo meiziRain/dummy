@@ -3,6 +3,8 @@ package com.meizi.admin;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.ArrayList;
+
 /**
  * @program: dummy
  * @description:
@@ -11,16 +13,14 @@ import org.springframework.beans.factory.annotation.Value;
  **/
 public class Demo {
     @Value("${mybatis-plus.mapper-locations}")
-    static String  classpath;
+    static String classpath;
     @Value("#{11*2}")
     static int i;
 
-
-@Test
-    public void demo(){
-
+    @Test
+    public void demo() {
+        ArrayList list=new ArrayList();
+        System.out.println(list==null);
     }
-
-
 
 }
